@@ -7,8 +7,8 @@ const Card = ({ id, name, email }) => {
   return (
     <div onClick={() => navigate(`./${id}`)}>
       <div className={classes.container}>
-        <h3 className={classes.he3}>{name}</h3>
-        <h5 className={classes.he5}>{email}</h5>
+        <h3>Name: {name}</h3>
+        <h5>Email: {email}</h5>
       </div>
     </div>
   );
