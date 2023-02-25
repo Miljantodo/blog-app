@@ -9,7 +9,7 @@ const Navigation = () => {
         <ul className={classes.list}>
           <li>
             <NavLink
-              to="/"
+              to="/users"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
