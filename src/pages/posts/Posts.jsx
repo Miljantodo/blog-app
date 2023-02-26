@@ -47,9 +47,21 @@ const Posts = () => {
 
   return (
     <>
-      <Pagination page={page} totalPages={totalPages} onClick={pageChange} />
-      <div className={classes.container}>{renderPosts()}</div>
-      <Pagination page={page} totalPages={totalPages} onClick={pageChange} />
+      {posts.length && (
+        <div>
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            onClick={pageChange}
+          />
+          <div className={classes.container}>{renderPosts()}</div>
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            onClick={pageChange}
+          />
+        </div>
+      )}
     </>
   );
 };
