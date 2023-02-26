@@ -5,6 +5,7 @@ import Users from "./pages/users/Users";
 import Root from "./pages/Root";
 import UserInformation from "./pages/users/information/UserInformation";
 import ErrorPage from "./pages/ErrorPage";
+import PostInformation from "./pages/posts/information/PostInformation";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -15,6 +16,7 @@ const App = () => {
         { path: "users", element: <Users /> },
         { path: "posts", element: <Posts /> },
         { path: "users/:userID", element: <UserInformation /> },
+        { path: "posts/:postID", element: <PostInformation /> },
         { path: "*", element: <ErrorPage /> },
       ],
     },

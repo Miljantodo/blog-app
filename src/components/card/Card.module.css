@@ -1,9 +1,9 @@
 .container {
     display: flex;
     flex-direction: column;
-    background-color: #43385d;
+    background-color: darkslategrey;
     box-shadow: 3px 3px 6px black;
-    width: 24rem;
+    width: 21rem;
     color: #f0f0f0;
     margin: 1.5rem;
     padding: 1rem;
