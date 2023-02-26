@@ -9,7 +9,7 @@ const API_TOKEN =
   "&per_page=20?access-token=04159bae6146ff65c3e788a48f50985a1dcaa8bac77de4988132ad5ca8a2bc30";
 
 const Posts = () => {
-  const [posts, setUsers] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -21,7 +21,7 @@ const Posts = () => {
     fetch(POSTS_API + page + API_TOKEN)
       .then((res) => res.json())
       .then((result) => {
-        setUsers(result.data);
+        setPosts(result.data);
         setTotalPages(result.meta.pagination.total);
       });
   }, [page]);
