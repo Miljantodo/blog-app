@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { ThreeDots } from "react-loader-spinner";
 import Card from "../../components/card/Card";
 import Pagination from "../../components/pagination/Pagination";
+import { ThreeDots } from "react-loader-spinner";
 import classes from "./Users.module.css";
 
 const USERS_API = "https://gorest.co.in/public/v1/users?page=";
@@ -29,25 +29,12 @@ const Users = () => {
   const renderUsers = () => {
     if (users.length) {
       return users.map((user) => <Card key={user.id} {...user} />);
-    } else {
-      return (
-        <ThreeDots
-          height="360"
-          width="360"
-          radius="9"
-          color="#4fa94d"
-          ariaLabel="three-dots-loading"
-          wrapperStyle={{}}
-          wrapperClassName=""
-          visible={true}
-        />
-      );
     }
   };
 
   return (
     <>
-      {users.length && (
+      {users.length > 0 ? (
         <div>
           <Pagination
             page={page}
@@ -61,6 +48,17 @@ const Users = () => {
             onClick={pageChange}
           />
         </div>
+      ) : (
+        <ThreeDots
+          height="360"
+          width="360"
+          radius="9"
+          color="#4fa94d"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{}}
+          wrapperClassName=""
+          visible={true}
+        />
       )}
     </>
   );

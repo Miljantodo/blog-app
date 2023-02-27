@@ -29,25 +29,12 @@ const Posts = () => {
   const renderPosts = () => {
     if (posts.length) {
       return posts.map((post) => <Card key={post.id} {...post} />);
-    } else {
-      return (
-        <ThreeDots
-          height="360"
-          width="360"
-          radius="9"
-          color="#4fa94d"
-          ariaLabel="three-dots-loading"
-          wrapperStyle={{}}
-          wrapperClassName=""
-          visible={true}
-        />
-      );
     }
   };
 
   return (
     <>
-      {posts.length && (
+      {posts.length > 0 ? (
         <div>
           <Pagination
             page={page}
@@ -61,6 +48,17 @@ const Posts = () => {
             onClick={pageChange}
           />
         </div>
+      ) : (
+        <ThreeDots
+          height="360"
+          width="360"
+          radius="9"
+          color="#4fa94d"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{}}
+          wrapperClassName=""
+          visible={true}
+        />
       )}
     </>
   );

@@ -6,7 +6,7 @@ const USER_API = "https://gorest.co.in/public/v2/users/";
 const API_TOKEN =
   "?04159bae6146ff65c3e788a48f50985a1dcaa8bac77de4988132ad5ca8a2bc30";
 
-const Information = () => {
+const UserInformation = () => {
   const { userID } = useParams();
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
@@ -48,4 +48,4 @@ const Information = () => {
   );
 };
 
-export default Information;
+export default UserInformation;
