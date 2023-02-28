@@ -41,6 +41,6 @@ export const fetchPostInfo = async (postID) => {
 };
 
 export const fetchComments = async (postID) => {
-  const res = await fetch(FETCH_POST_API + "/comments?" + API_TOKEN);
+  const res = await fetch(FETCH_POST_API + postID + "/comments?" + API_TOKEN);
   return res.json();
 };
