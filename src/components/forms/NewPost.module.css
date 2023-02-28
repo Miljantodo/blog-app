@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 15px;
+    width: 450px;
+    flex-wrap: wrap;
+}
+
+.title {
+    height: 30px;
+}
+
+.body {
+    height: 120px;
+}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import classes from "./PostInformation.module.css";
-import CommentModal from "../../../components/comments/CommentModal";
+import Comments from "../../../components/comments/Comments";
 import { fetchPostInfo, fetchUserInfo } from "../../../utils/Api";
 
 const PostInformation = () => {
@@ -38,7 +38,7 @@ const PostInformation = () => {
             <div>{posts.body}</div>
           </div>
           <br></br>
-          <CommentModal postID={posts.id} />
+          <Comments postID={posts.id} />
         </div>
       ) : (
         <ThreeDots

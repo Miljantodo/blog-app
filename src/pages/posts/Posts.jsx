@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import Card from "../../components/card/Card";
+import NewPost from "../../components/forms/NewPost";
 import Pagination from "../../components/pagination/Pagination";
 import { fetchPosts } from "../../utils/Api";
 import classes from "./Posts.module.css";
@@ -36,6 +37,9 @@ const Posts = () => {
             totalPages={totalPages}
             onClick={pageChange}
           />
+          <div>
+            <NewPost />
+          </div>
           <div className={classes.container}>{renderPosts()}</div>
           <Pagination
             page={page}
