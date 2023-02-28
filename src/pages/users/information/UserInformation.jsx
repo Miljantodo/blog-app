@@ -15,7 +15,7 @@ const UserInformation = () => {
     fetchUserPosts(userID).then((data) => {
       setPosts(data);
     });
-  }, []);
+  }, [userID]);
 
   return (
     <>
