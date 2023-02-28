@@ -8,7 +8,7 @@ const API_TOKEN =
 
 const Card = ({ id, user_id, name, email, title }) => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("Unknown");
+  const [username, setUsername] = useState("Unknown User");
 
   useEffect(() => {
     findName(user_id);

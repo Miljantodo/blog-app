@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import classes from "./PostInformation.module.css";
+import CommentModal from "../../../components/comments/CommentModal";
 
 const USER_API = "https://gorest.co.in/public/v2/users/";
 const POST_API = "https://gorest.co.in/public/v2/posts/";
@@ -10,8 +11,8 @@ const API_TOKEN =
 
 const PostInformation = () => {
   const { postID } = useParams();
-  const [username, setUsername] = useState("Unknown");
-  const [email, setEmail] = useState("Unknown");
+  const [username, setUsername] = useState("Unknown User");
+  const [email, setEmail] = useState("Unknown Email");
   const [posts, setPosts] = useState([]);
   const [valid, setValid] = useState(false);
 
@@ -37,7 +38,6 @@ const PostInformation = () => {
           });
       });
   }, []);
-
   return (
     <>
       {valid ? (
@@ -49,7 +49,7 @@ const PostInformation = () => {
             <div>{posts.body}</div>
           </div>
           <br></br>
-          <button className={classes.button}>Comments</button>
+          <CommentModal postID={posts.id} />
         </div>
       ) : (
         <ThreeDots
