@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchUserInfo } from "../../utils/Api";
 import classes from "./Card.module.css";
-
-const USER_API = "https://gorest.co.in/public/v2/users/";
-const API_TOKEN =
-  "?04159bae6146ff65c3e788a48f50985a1dcaa8bac77de4988132ad5ca8a2bc30";
 
 const Card = ({ id, user_id, name, email, title }) => {
   const navigate = useNavigate();
@@ -14,17 +11,11 @@ const Card = ({ id, user_id, name, email, title }) => {
     findName(user_id);
   }, []);
 
-  function findName(userid) {
+  function findName(userID) {
     if (user_id) {
-      fetch(USER_API + userid + API_TOKEN)
+      fetchUserInfo(userID)
         .then((result) => {
-          if (result.ok) {
-            return result.json();
-          }
-          throw new Error("User doesn't exist.");
-        })
-        .then((postdata) => {
-          setUsername(postdata.name);
+          setUsername(result.name);
         })
         .catch((error) => {
           console.log("API is missing users referenced above.");

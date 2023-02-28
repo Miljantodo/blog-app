@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
+import { fetchComments } from "../../utils/Api";
 import Comment from "./comment/Comment";
 import classes from "./CommentModal.module.css";
-
-const COMMENT_API = "https://gorest.co.in/public/v2/posts/";
-const API_TOKEN =
-  "/comments?04159bae6146ff65c3e788a48f50985a1dcaa8bac77de4988132ad5ca8a2bc30";
 
 const CommentModal = (props) => {
   Modal.setAppElement("#root");
@@ -13,12 +10,9 @@ const CommentModal = (props) => {
   const [comments, setComments] = useState({});
 
   useEffect(() => {
-    fetch(COMMENT_API + props.postID + API_TOKEN)
-      .then((res) => res.json())
-      .then((data) => {
-        setComments(data);
-        console.log(data);
-      });
+    fetchComments(props.postID).then((data) => {
+      setComments(data);
+    });
   }, []);
 
   function openModal() {

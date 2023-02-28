@@ -4,7 +4,7 @@ import Posts from "./pages/posts/Posts";
 import Users from "./pages/users/Users";
 import Root from "./pages/Root";
 import UserInformation from "./pages/users/information/UserInformation";
-import ErrorPage from "./pages/ErrorPage";
+import ErrorPage from "./pages/notfound/ErrorPage";
 import PostInformation from "./pages/posts/information/PostInformation";
 
 const App = () => {

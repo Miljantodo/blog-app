@@ -3,11 +3,7 @@ import { useParams } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import classes from "./PostInformation.module.css";
 import CommentModal from "../../../components/comments/CommentModal";
-
-const USER_API = "https://gorest.co.in/public/v2/users/";
-const POST_API = "https://gorest.co.in/public/v2/posts/";
-const API_TOKEN =
-  "?04159bae6146ff65c3e788a48f50985a1dcaa8bac77de4988132ad5ca8a2bc30";
+import { fetchPostInfo, fetchUserInfo } from "../../../utils/Api";
 
 const PostInformation = () => {
   const { postID } = useParams();
@@ -17,27 +13,20 @@ const PostInformation = () => {
   const [valid, setValid] = useState(false);
 
   useEffect(() => {
-    fetch(POST_API + postID + API_TOKEN)
-      .then((res) => res.json())
-      .then((data) => {
-        setPosts(data);
-        fetch(USER_API + data.user_id + API_TOKEN)
-          .then((result) => {
-            if (result.ok) {
-              return result.json();
-            }
-            throw new Error("User doesn't exist.");
-          })
-          .then((postdata) => {
-            setUsername(postdata.name);
-            setEmail(postdata.email);
-            setValid(true);
-          })
-          .catch((error) => {
-            setValid(true);
-          });
-      });
+    fetchPostInfo(postID).then((data) => {
+      setPosts(data);
+      fetchUserInfo(data.user_id)
+        .then((result) => {
+          setUsername(result.name);
+          setEmail(result.email);
+          setValid(true);
+        })
+        .catch((error) => {
+          setValid(true);
+        });
+    });
   }, []);
+
   return (
     <>
       {valid ? (

@@ -3,10 +3,7 @@ import Card from "../../components/card/Card";
 import Pagination from "../../components/pagination/Pagination";
 import { ThreeDots } from "react-loader-spinner";
 import classes from "./Users.module.css";
-
-const USERS_API = "https://gorest.co.in/public/v1/users?page=";
-const API_TOKEN =
-  "&per_page=30?access-token=04159bae6146ff65c3e788a48f50985a1dcaa8bac77de4988132ad5ca8a2bc30";
+import { fetchUsers } from "../../utils/Api";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -18,12 +15,10 @@ const Users = () => {
   }
 
   useEffect(() => {
-    fetch(USERS_API + page + API_TOKEN)
-      .then((res) => res.json())
-      .then((result) => {
-        setUsers(result.data);
-        setTotalPages(result.meta.pagination.total);
-      });
+    fetchUsers(page).then((result) => {
+      setUsers(result.data);
+      setTotalPages(result.meta.pagination.total);
+    });
   }, [page]);
 
   const renderUsers = () => {

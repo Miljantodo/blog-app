@@ -2,11 +2,8 @@ import React, { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import Card from "../../components/card/Card";
 import Pagination from "../../components/pagination/Pagination";
+import { fetchPosts } from "../../utils/Api";
 import classes from "./Posts.module.css";
-
-const POSTS_API = "https://gorest.co.in/public/v1/posts?page=";
-const API_TOKEN =
-  "&per_page=20?access-token=04159bae6146ff65c3e788a48f50985a1dcaa8bac77de4988132ad5ca8a2bc30";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -18,12 +15,10 @@ const Posts = () => {
   }
 
   useEffect(() => {
-    fetch(POSTS_API + page + API_TOKEN)
-      .then((res) => res.json())
-      .then((result) => {
-        setPosts(result.data);
-        setTotalPages(result.meta.pagination.total);
-      });
+    fetchPosts(page).then((result) => {
+      setPosts(result.data);
+      setTotalPages(result.meta.pagination.total);
+    });
   }, [page]);
 
   const renderPosts = () => {
