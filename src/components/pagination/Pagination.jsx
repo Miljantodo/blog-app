@@ -15,7 +15,10 @@ const Pagination = (props) => {
       >
         Prev Page
       </button>
-      <div className={classes.currentPage}>{props.page}</div>
+      <div className={classes.pages}>
+        <div className={classes.currentPage}>{props.page}</div>. . .
+        <div className={classes.currentPage}>{props.totalPages}</div>
+      </div>
       <button
         className={
           props.page >= props.totalPages ? classes.hide : classes.visible
