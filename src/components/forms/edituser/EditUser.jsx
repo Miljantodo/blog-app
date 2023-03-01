@@ -22,7 +22,9 @@ const EditUser = (props) => {
     updateUser(data, props.user.id).catch((err) => {
       console.log(err.message);
     });
-    window.location.reload(false);
+    setTimeout(function () {
+      window.location.reload();
+    }, 1000);
   };
 
   const renderForm = () => {
@@ -44,7 +46,7 @@ const EditUser = (props) => {
         </select>
         <select {...register("status", { required: true })}>
           <option value="active">Active</option>
-          <option value="offline">Offline</option>
+          <option value="inactive">Offline</option>
         </select>
         <input type="submit" />
       </form>
