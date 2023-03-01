@@ -5,7 +5,7 @@ import OverlayModal from "../modal/OverlayModal";
 import Comment from "./comment/Comment";
 import classes from "./Comments.module.css";
 
-const CommentModal = (props) => {
+const Comments = (props) => {
   const [comments, setComments] = useState({});
   const [open, setOpen] = useState(false);
   const [refresh, setRefresh] = useState(false);
@@ -97,4 +97,4 @@ const CommentModal = (props) => {
   return <OverlayModal render={renderComments} buttonText={"Show Comments"} />;
 };
 
-export default CommentModal;
+export default Comments;
