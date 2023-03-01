@@ -50,3 +50,16 @@ export const createPost = async (data) => {
   });
   return res.json();
 };
+
+export const postComment = async (body, postID) => {
+  const res = await fetch(FETCH_POST_API + postID + "/comments" + API_TOKEN, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: "Petar Vucic",
+      email: "vucko.petar@gmail.com",
+      body: body.Comment,
+    }),
+  });
+  return res.json();
+};
