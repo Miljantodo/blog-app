@@ -37,7 +37,7 @@ const Posts = () => {
             totalPages={totalPages}
             onClick={pageChange}
           />
-          <div>
+          <div className={classes.create}>
             <NewPost />
           </div>
           <div className={classes.container}>{renderPosts()}</div>

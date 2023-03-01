@@ -33,7 +33,11 @@ const Comments = (props) => {
       return (
         <>
           <div className={classes.empty}>No comments for this post.</div>
-          <NewComment refresh={refresh} setRefresh={setRefresh} />
+          <NewComment
+            refresh={refresh}
+            setRefresh={setRefresh}
+            postID={props.postID}
+          />
         </>
       );
     }

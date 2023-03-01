@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import EditUser from "../../../components/forms/edituser/EditUser";
 import { fetchUserInfo, fetchUserPosts } from "../../../utils/Api";
 import classes from "./UserInformation.module.css";
@@ -9,6 +9,7 @@ const UserInformation = () => {
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
   const [ready, setReady] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchUserInfo(userID).then((data) => {
@@ -29,12 +30,26 @@ const UserInformation = () => {
         <div>Status: {user.status}</div>
       </div>
       <br></br>
-      {ready && <EditUser user={user} />}
+      {ready && (
+        <div className={classes.edit}>
+          <EditUser user={user} />
+        </div>
+      )}
       <br></br>
       <div className={classes.mini_container}>
         Posts:
         {posts.length ? (
-          posts.map((post) => <div key={post.id}>{post.title}</div>)
+          posts.map((post) => (
+            <button
+              className={classes.posts}
+              key={post.id}
+              onClick={() => {
+                navigate(`/posts/${post.id}`);
+              }}
+            >
+              {post.title}
+            </button>
+          ))
         ) : (
           <div>User has no posts.</div>
         )}

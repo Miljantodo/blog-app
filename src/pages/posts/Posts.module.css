@@ -2,9 +2,12 @@
     display: flex;
     flex-wrap: wrap;
 }
+.create{
+    display: flex;
+    justify-content: center;
+}
 
 .button {
-
     width: 150px;
     appearance: none;
     background-color: #2ea44f;
@@ -28,4 +31,4 @@
     touch-action: manipulation;
     vertical-align: middle;
     white-space: nowrap;
-  }
+}

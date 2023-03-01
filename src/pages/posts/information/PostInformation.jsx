@@ -4,17 +4,18 @@ import { ThreeDots } from "react-loader-spinner";
 import classes from "./PostInformation.module.css";
 import Comments from "../../../components/comments/Comments";
 import { fetchPostInfo, fetchUserInfo } from "../../../utils/Api";
+import EditPost from "../../../components/forms/editpost/EditPost";
 
 const PostInformation = () => {
   const { postID } = useParams();
   const [username, setUsername] = useState("Unknown User");
   const [email, setEmail] = useState("Unknown Email");
-  const [posts, setPosts] = useState([]);
+  const [post, setPost] = useState([]);
   const [valid, setValid] = useState(false);
 
   useEffect(() => {
     fetchPostInfo(postID).then((data) => {
-      setPosts(data);
+      setPost(data);
       fetchUserInfo(data.user_id)
         .then((result) => {
           setUsername(result.name);
@@ -34,11 +35,14 @@ const PostInformation = () => {
           <div className={classes.container}>
             <div>Name: {username}</div>
             <div>Email: {email}</div>
-            <h3>{posts.title}</h3>
-            <div>{posts.body}</div>
+            <h3>{post.title}</h3>
+            <div>{post.body}</div>
           </div>
           <br></br>
-          <Comments postID={posts.id} />
+          <div className={classes.buttons}>
+            <EditPost post={post} />
+            <Comments postID={post.id} />
+          </div>
         </div>
       ) : (
         <ThreeDots
