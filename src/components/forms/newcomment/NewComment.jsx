@@ -26,7 +26,7 @@ const NewComment = (props) => {
     <>
       {open && (
         <form className={classes.container} onSubmit={handleSubmit(onSubmit)}>
-          <input
+          <textarea
             className={classes.body}
             type="text"
             placeholder="Comment"

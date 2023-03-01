@@ -3,11 +3,16 @@
     flex-direction: column;
     background-color: darkslategrey;
     box-shadow: 3px 3px 6px black;
-    width: 30rem;
+    width: 24rem;
     color: #f0f0f0;
     margin: 1.5rem;
     padding: 1rem;
     align-items: center;
     justify-content: space-between;
     border-radius: 6px;
+}
+
+.body {
+    width: 21rem;
+    height: 6rem;
 }
