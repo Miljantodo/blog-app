@@ -63,3 +63,17 @@ export const postComment = async (body, postID) => {
   });
   return res.json();
 };
+
+export const updateUser = async (data, userID) => {
+  const res = await fetch(FETCH_USER_API + userID + API_TOKEN, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: data.name,
+      email: data.email,
+      gender: data.gender,
+      status: data.status,
+    }),
+  });
+  return res.json();
+};
