@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { createPost } from "../../utils/Api";
-import OverlayModal from "../modal/OverlayModal";
+import { createPost } from "../../../utils/Api";
+import OverlayModal from "../../modal/OverlayModal";
 import classes from "./NewPost.module.css";
 
 const NewPost = (props) => {
@@ -13,11 +13,13 @@ const NewPost = (props) => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    createPost(data).then((result)=>{
-      navigate("/users/702677")
-    }).catch((err) => {
-      console.log(err.message);
-    });
+    createPost(data)
+      .then((result) => {
+        navigate("/users/702677");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   const renderForm = () => {

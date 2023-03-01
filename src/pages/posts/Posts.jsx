@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import Card from "../../components/card/Card";
-import NewPost from "../../components/forms/NewPost";
+import NewPost from "../../components/forms/newpost/NewPost";
 import Pagination from "../../components/pagination/Pagination";
 import { fetchPosts } from "../../utils/Api";
 import classes from "./Posts.module.css";
