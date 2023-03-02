@@ -54,17 +54,3 @@
     flex-direction: column;
     align-items: center;
   }
-  
-  h3 {
-    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 18px;
-    line-height: 24px;
-    font-weight: 600;
-  }
-
-  h5 {
-    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    line-height: 24px;
-    font-weight: 600;
-  }

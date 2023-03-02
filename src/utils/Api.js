@@ -58,7 +58,7 @@ export const postComment = async (body, postID) => {
     body: JSON.stringify({
       name: "Petar Vucic",
       email: "vucko.petar@gmail.com",
-      body: body.Comment,
+      body: body.comment,
     }),
   });
   return res.json();

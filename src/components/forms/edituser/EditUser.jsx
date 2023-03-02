@@ -44,7 +44,7 @@ const EditUser = (props) => {
           <option value="active">Active</option>
           <option value="inactive">Offline</option>
         </select>
-        <input type="submit" />
+        <input type="submit" value="Edit" />
       </form>
     );
   };

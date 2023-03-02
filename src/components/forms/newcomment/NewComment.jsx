@@ -11,7 +11,7 @@ const NewComment = (props) => {
     postComment(data, props.postID)
       .then(() => {
         setOpen(false);
-        props.setRefresh(!props.refresh);
+        props.setRefresh(true);
       })
       .catch((err) => {
         console.log(err.message);
@@ -25,7 +25,7 @@ const NewComment = (props) => {
             className={classes.body}
             type="text"
             placeholder="Comment"
-            {...register("Comment", { required: true })}
+            {...register("comment", { required: true })}
           />
           <input type="submit" value="Submit comment."></input>
         </form>

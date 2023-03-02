@@ -1,16 +1,3 @@
 .empty {
   margin: 30px;
 }
-
-.container {
-  display: flex;
-  flex-direction: column;
-  padding: 30px;
-  gap: 15px;
-  width: 450px;
-  flex-wrap: wrap;
-}
-
-.body {
-  height: 120px;
-}

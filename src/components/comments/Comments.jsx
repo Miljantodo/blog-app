@@ -13,34 +13,26 @@ const Comments = (props) => {
     fetchComments(props.postID).then((data) => {
       setComments(data);
     });
+    setRefresh(false);
   }, [refresh]);
 
   const renderComments = () => {
-    if (comments.length) {
-      return (
-        <>
-          {comments.map((comments) => (
+    return (
+      <>
+        {comments.length ? (
+          comments.map((comments) => (
             <Card key={comments.id} p1={comments.name} p2={comments.body} />
-          ))}
-          <NewComment
-            refresh={refresh}
-            setRefresh={setRefresh}
-            postID={props.postID}
-          />
-        </>
-      );
-    } else {
-      return (
-        <>
+          ))
+        ) : (
           <div className={classes.empty}>No comments for this post.</div>
-          <NewComment
-            refresh={refresh}
-            setRefresh={setRefresh}
-            postID={props.postID}
-          />
-        </>
-      );
-    }
+        )}
+        <NewComment
+          refresh={refresh}
+          setRefresh={setRefresh}
+          postID={props.postID}
+        />
+      </>
+    );
   };
 
   return <OverlayModal render={renderComments} buttonText={"Show Comments"} />;

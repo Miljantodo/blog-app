@@ -3,9 +3,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Posts from "./pages/posts/Posts";
 import Users from "./pages/users/Users";
 import Root from "./pages/Root";
-import UserInformation from "./pages/users/information/UserInformation";
+import UserInformation from "./pages/users/single-user/UserInformation";
 import ErrorPage from "./pages/notfound/ErrorPage";
-import PostInformation from "./pages/posts/information/PostInformation";
+import PostInformation from "./pages/posts/single-post/PostInformation";
 
 const App = () => {
   const router = createBrowserRouter([
