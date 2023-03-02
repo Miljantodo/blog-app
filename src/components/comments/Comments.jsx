@@ -5,37 +5,39 @@ import OverlayModal from "../modal/OverlayModal";
 import classes from "./Comments.module.css";
 import Card from "../../components/card/Card";
 
-const Comments = (props) => {
-  const [comments, setComments] = useState({});
-  const [refresh, setRefresh] = useState(false);
+const Comments = ({ postID }) => {
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    fetchComments(props.postID).then((data) => {
+    fetchComments(postID).then((data) => {
       setComments(data);
     });
-    setRefresh(false);
-  }, [refresh]);
+  }, []);
 
   const renderComments = () => {
     return (
       <>
         {comments.length ? (
-          comments.map((comments) => (
-            <Card key={comments.id} p1={comments.name} p2={comments.body} />
+          comments.map((comment) => (
+            <Card key={comment.id} p1={comment.name} p2={comment.body} />
           ))
         ) : (
           <div className={classes.empty}>No comments for this post.</div>
         )}
         <NewComment
-          refresh={refresh}
-          setRefresh={setRefresh}
-          postID={props.postID}
+          postID={postID}
+          comments={comments}
+          setComments={setComments}
         />
       </>
     );
   };
 
-  return <OverlayModal render={renderComments} buttonText={"Show Comments"} />;
+  return (
+    <OverlayModal buttonText={"Show Comments"} className={classes.modal}>
+      {renderComments()}
+    </OverlayModal>
+  );
 };
 
 export default Comments;

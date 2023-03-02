@@ -11,3 +11,8 @@
   .body {
     height: 120px;
   }
+
+  .fixed {
+    margin-top: 630px;
+    position: fixed;
+  }

@@ -1,22 +1,14 @@
-.modal {
-  margin-top: 10%;
-  margin-left: 26%;
-  margin-bottom: 3%;
-  display: flex;
-  justify-content: center;
-  width: 39rem;
-  background-color: rgb(21, 21, 21);
-  border-radius: 6px;
-}
-
 .overlay {
-  position: fixed;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color:rgb(255, 255, 240, 0.2);
-  overflow-y: scroll;
+  overflow-y: none;
 
 }
   

@@ -49,7 +49,7 @@
     padding: 0;
   }
 
-  main {
+  #main-container {
     display: flex;
     flex-direction: column;
     align-items: center;

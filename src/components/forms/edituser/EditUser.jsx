@@ -4,18 +4,18 @@ import { updateUser } from "../../../utils/Api";
 import OverlayModal from "../../modal/OverlayModal";
 import classes from "./EditUser.module.css";
 
-const EditUser = (props) => {
+const EditUser = ({ user }) => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      name: props.user.name,
-      email: props.user.email,
-      gender: props.user.gender,
-      status: props.user.status,
+      name: user.name,
+      email: user.email,
+      gender: user.gender,
+      status: user.status,
     },
   });
 
   const onSubmit = (data) => {
-    updateUser(data, props.user.id).catch((err) => {
+    updateUser(data, user.id).catch((err) => {
       console.log(err.message);
     });
     setTimeout(function () {
@@ -48,7 +48,11 @@ const EditUser = (props) => {
       </form>
     );
   };
-  return <OverlayModal render={renderForm} buttonText={"Edit User"} />;
+  return (
+    <OverlayModal buttonText={"Edit User"} className={classes.modal}>
+      {renderForm()}
+    </OverlayModal>
+  );
 };
 
 export default EditUser;

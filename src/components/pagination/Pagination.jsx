@@ -1,14 +1,14 @@
 import React from "react";
 import classes from "./Pagination.module.css";
 
-const Pagination = (props) => {
+const Pagination = ({ page, totalPages, onClick }) => {
   function pageChange(i) {
-    props.onClick(props.page + i);
+    onClick(page + i);
   }
   return (
     <div className={classes.container}>
       <button
-        className={props.page < 2 ? classes.hide : classes.visible}
+        className={page < 2 ? classes.hide : classes.visible}
         onClick={() => {
           pageChange(-1);
         }}
@@ -16,13 +16,11 @@ const Pagination = (props) => {
         Prev Page
       </button>
       <div className={classes.pages}>
-        <div className={classes.currentPage}>{props.page}</div>. . .
-        <div className={classes.currentPage}>{props.totalPages}</div>
+        <div className={classes.currentPage}>{page}</div>. . .
+        <div className={classes.currentPage}>{totalPages}</div>
       </div>
       <button
-        className={
-          props.page >= props.totalPages ? classes.hide : classes.visible
-        }
+        className={page >= totalPages ? classes.hide : classes.visible}
         onClick={() => {
           pageChange(1);
         }}

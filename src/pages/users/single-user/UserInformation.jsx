@@ -8,7 +8,7 @@ import classes from "./UserInformation.module.css";
 
 const UserInformation = () => {
   const { userID } = useParams();
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState([]);
   const [posts, setPosts] = useState([]);
   const [valid, setValid] = useState(false);
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const UserInformation = () => {
       />
       <br></br>
       <div className={classes.edit}>
-        <EditUser user={user} />
+        <EditUser user={user} setUser={setUser} />
       </div>
       <br></br>
       <div className={classes.mini_container}>

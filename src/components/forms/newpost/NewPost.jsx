@@ -37,7 +37,11 @@ const NewPost = () => {
       </form>
     );
   };
-  return <OverlayModal render={renderForm} buttonText={"Create a new post."} />;
+  return (
+    <OverlayModal className={classes.modal} buttonText={"Create a new post."}>
+      {renderForm()}
+    </OverlayModal>
+  );
 };
 
 export default NewPost;

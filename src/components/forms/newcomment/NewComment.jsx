@@ -3,15 +3,15 @@ import { useForm } from "react-hook-form";
 import { postComment } from "../../../utils/Api";
 import classes from "./NewComment.module.css";
 
-const NewComment = (props) => {
+const NewComment = ({ postID, comments, setComments }) => {
   const [open, setOpen] = useState(false);
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    postComment(data, props.postID)
-      .then(() => {
+    postComment(data, postID)
+      .then((result) => {
         setOpen(false);
-        props.setRefresh(true);
+        setComments([...comments, result]);
       })
       .catch((err) => {
         console.log(err.message);
@@ -31,6 +31,7 @@ const NewComment = (props) => {
         </form>
       ) : (
         <button
+          className={classes.fixed}
           onClick={() => {
             setOpen(true);
           }}

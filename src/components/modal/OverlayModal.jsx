@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import classes from "./OverlayModal.module.css";
 
-const OverlayModal = (props) => {
+const OverlayModal = ({ buttonText, children, ...props }) => {
   Modal.setAppElement("#root");
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -14,19 +14,19 @@ const OverlayModal = (props) => {
   }
 
   return (
-    <div>
+    <div className="center">
       {
         <button onClick={openModal} className={classes.button}>
-          {props.buttonText}
+          {buttonText}
         </button>
       }
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        className={classes.modal}
         overlayClassName={classes.overlay}
+        {...props}
       >
-        <div>{props.render()}</div>
+        {children}
       </Modal>
     </div>
   );
