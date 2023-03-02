@@ -5,16 +5,12 @@ import { createPost } from "../../../utils/Api";
 import OverlayModal from "../../modal/OverlayModal";
 import classes from "./NewPost.module.css";
 
-const NewPost = (props) => {
+const NewPost = () => {
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     createPost(data)
-      .then((result) => {
+      .then(() => {
         navigate("/users/702677");
       })
       .catch((err) => {

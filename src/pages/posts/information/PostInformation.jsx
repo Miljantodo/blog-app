@@ -5,6 +5,7 @@ import classes from "./PostInformation.module.css";
 import Comments from "../../../components/comments/Comments";
 import { fetchPostInfo, fetchUserInfo } from "../../../utils/Api";
 import EditPost from "../../../components/forms/editpost/EditPost";
+import Card from "../../../components/card/Card";
 
 const PostInformation = () => {
   const { postID } = useParams();
@@ -32,12 +33,14 @@ const PostInformation = () => {
     <>
       {valid ? (
         <div>
-          <div className={classes.container}>
-            <div>Name: {username}</div>
-            <div>Email: {email}</div>
-            <h3>{post.title}</h3>
-            <div>{post.body}</div>
-          </div>
+          <Card
+            className={classes.container}
+            key={post.id}
+            p1={username}
+            p2={email}
+            p3={post.title}
+            p4={post.body}
+          />
           <br></br>
           <div className={classes.buttons}>
             <EditPost post={post} />
@@ -46,8 +49,8 @@ const PostInformation = () => {
         </div>
       ) : (
         <ThreeDots
-          height="360"
-          width="360"
+          height="180"
+          width="180"
           radius="9"
           color="#4fa94d"
           ariaLabel="three-dots-loading"

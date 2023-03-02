@@ -5,11 +5,7 @@ import OverlayModal from "../../modal/OverlayModal";
 import classes from "./EditUser.module.css";
 
 const EditUser = (props) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: {
       name: props.user.name,
       email: props.user.email,
@@ -24,7 +20,7 @@ const EditUser = (props) => {
     });
     setTimeout(function () {
       window.location.reload();
-    }, 1000);
+    }, 600);
   };
 
   const renderForm = () => {

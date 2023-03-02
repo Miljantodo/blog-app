@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { fetchComments } from "../../utils/Api";
 import NewComment from "../forms/newcomment/NewComment";
 import OverlayModal from "../modal/OverlayModal";
-import Comment from "./comment/Comment";
 import classes from "./Comments.module.css";
+import Card from "../../components/card/Card";
 
 const Comments = (props) => {
   const [comments, setComments] = useState({});
@@ -20,7 +20,7 @@ const Comments = (props) => {
       return (
         <>
           {comments.map((comments) => (
-            <Comment key={comments.id} {...comments} />
+            <Card key={comments.id} p1={comments.name} p2={comments.body} />
           ))}
           <NewComment
             refresh={refresh}

@@ -23,7 +23,9 @@ const Users = () => {
 
   const renderUsers = () => {
     if (users.length) {
-      return users.map((user) => <Card key={user.id} {...user} />);
+      return users.map((user) => (
+        <Card key={user.id} id={user.id} p1={user.name} p2={user.email} />
+      ));
     }
   };
 
@@ -45,8 +47,8 @@ const Users = () => {
         </div>
       ) : (
         <ThreeDots
-          height="360"
-          width="360"
+          height="180"
+          width="180"
           radius="9"
           color="#4fa94d"
           ariaLabel="three-dots-loading"

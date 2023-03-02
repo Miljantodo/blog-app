@@ -5,11 +5,7 @@ import OverlayModal from "../../modal/OverlayModal";
 import classes from "./EditPost.module.css";
 
 const EditPost = (props) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: {
       title: props.post.title,
       body: props.post.body,
@@ -17,13 +13,12 @@ const EditPost = (props) => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
     updatePost(data, props.post.id).catch((err) => {
       console.log(err.message);
     });
     setTimeout(function () {
       window.location.reload();
-    }, 1000);
+    }, 600);
   };
 
   const renderForm = () => {

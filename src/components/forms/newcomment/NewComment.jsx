@@ -5,12 +5,7 @@ import classes from "./NewComment.module.css";
 
 const NewComment = (props) => {
   const [open, setOpen] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     postComment(data, props.postID)
@@ -24,7 +19,7 @@ const NewComment = (props) => {
   };
   return (
     <>
-      {open && (
+      {open ? (
         <form className={classes.container} onSubmit={handleSubmit(onSubmit)}>
           <textarea
             className={classes.body}
@@ -34,8 +29,7 @@ const NewComment = (props) => {
           />
           <input type="submit" value="Submit comment."></input>
         </form>
-      )}
-      {!open && (
+      ) : (
         <button
           onClick={() => {
             setOpen(true);
