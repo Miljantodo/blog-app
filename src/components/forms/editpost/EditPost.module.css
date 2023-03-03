@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 15px;
+    width: 600px;
+    flex-wrap: wrap;
+}
+.title{
+    height: 45px;
+}
+.body {
+    height: 150px;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 360px;
+    padding: 10px;
+    background-color: rgb(21, 21, 21);
+    border-radius: 6px;
+  }
