@@ -43,7 +43,7 @@ const PostInformation = () => {
           />
           <br></br>
           <div className={classes.buttons}>
-            <EditPost post={post} />
+            <EditPost post={post} setPost={setPost} />
             <Comments postID={post.id} />
           </div>
         </div>

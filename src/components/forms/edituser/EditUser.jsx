@@ -4,7 +4,7 @@ import { updateUser } from "../../../utils/Api";
 import OverlayModal from "../../modal/OverlayModal";
 import classes from "./EditUser.module.css";
 
-const EditUser = ({ user }) => {
+const EditUser = ({ user, setUser }) => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
       name: user.name,
@@ -15,12 +15,13 @@ const EditUser = ({ user }) => {
   });
 
   const onSubmit = (data) => {
-    updateUser(data, user.id).catch((err) => {
-      console.log(err.message);
-    });
-    setTimeout(function () {
-      window.location.reload();
-    }, 600);
+    updateUser(data, user.id)
+      .then((result) => {
+        setUser(result);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   const renderForm = () => {

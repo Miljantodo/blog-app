@@ -4,7 +4,7 @@ import { updatePost } from "../../../utils/Api";
 import OverlayModal from "../../modal/OverlayModal";
 import classes from "./EditPost.module.css";
 
-const EditPost = ({ post }) => {
+const EditPost = ({ post, setPost }) => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
       title: post.title,
@@ -13,12 +13,13 @@ const EditPost = ({ post }) => {
   });
 
   const onSubmit = (data) => {
-    updatePost(data, post.id).catch((err) => {
-      console.log(err.message);
-    });
-    setTimeout(function () {
-      window.location.reload();
-    }, 600);
+    updatePost(data, post.id)
+      .then((result) => {
+        setPost(result);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   const renderForm = () => {
