@@ -1,22 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { postComment } from "../../../utils/Api";
 import classes from "./NewComment.module.css";
 
-const NewComment = ({ postID, comments, setComments }) => {
-  const [open, setOpen] = useState(false);
+const NewComment = ({ onSubmit, open, setOpen }) => {
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
-    postComment(data, postID)
-      .then((result) => {
-        setOpen(false);
-        setComments([...comments, result]);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
   return (
     <>
       {open ? (

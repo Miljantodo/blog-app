@@ -5,6 +5,10 @@
     margin: 0px 12rem 3rem 12rem;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 .hide {
     visibility: hidden;
     width: 120px;

@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 import Card from "../../components/card/Card";
 import NewPost from "../../components/forms/newpost/NewPost";
 import Pagination from "../../components/pagination/Pagination";
-import { fetchPosts, fetchUserInfo } from "../../utils/Api";
+import { createPost, fetchPosts, fetchUserInfo } from "../../utils/Api";
 import classes from "./Posts.module.css";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [responded, setResponded] = useState(false);
+  const navigate = useNavigate();
 
   function pageChange(pageValue) {
     setPage(pageValue);
+    setResponded(false);
     setPosts([]);
   }
 
@@ -28,8 +32,19 @@ const Posts = () => {
 
       setPosts(postsWithUsers);
       setTotalPages(result.meta.pagination.total);
+      setResponded(true);
     });
   }, [page]);
+
+  const onSubmit = (data) => {
+    createPost(data)
+      .then(() => {
+        navigate("/users/702677");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
   const findAuthorName = (userID) => {
     return fetchUserInfo(userID)
@@ -52,34 +67,29 @@ const Posts = () => {
 
   return (
     <>
-      {posts.length > 0 ? (
-        <div>
-          <Pagination
-            page={page}
-            totalPages={totalPages}
-            onClick={pageChange}
-          />
-          <div className={classes.create}>
-            <NewPost />
+      {responded ? (
+        posts.length > 0 ? (
+          <div>
+            <Pagination
+              page={page}
+              totalPages={totalPages}
+              onClick={pageChange}
+            />
+            <div className={classes.create}>
+              <NewPost onSubmit={onSubmit} />
+            </div>
+            <div className={classes.container}>{renderPosts()}</div>
+            <Pagination
+              page={page}
+              totalPages={totalPages}
+              onClick={pageChange}
+            />
           </div>
-          <div className={classes.container}>{renderPosts()}</div>
-          <Pagination
-            page={page}
-            totalPages={totalPages}
-            onClick={pageChange}
-          />
-        </div>
+        ) : (
+          <div>No posts found in the database.</div>
+        )
       ) : (
-        <ThreeDots
-          height="180"
-          width="180"
-          radius="9"
-          color="#4fa94d"
-          ariaLabel="three-dots-loading"
-          wrapperStyle={{}}
-          wrapperClassName=""
-          visible={true}
-        />
+        <ThreeDots className="loader" />
       )}
     </>
   );

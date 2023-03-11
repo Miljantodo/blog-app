@@ -1,22 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { createPost } from "../../../utils/Api";
 import OverlayModal from "../../modal/OverlayModal";
 import classes from "./NewPost.module.css";
 
-const NewPost = () => {
-  const navigate = useNavigate();
+const NewPost = ({ onSubmit }) => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    createPost(data)
-      .then(() => {
-        navigate("/users/702677");
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
 
   const renderForm = () => {
     return (

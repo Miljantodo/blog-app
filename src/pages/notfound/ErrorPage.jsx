@@ -12,10 +12,10 @@ const ErrorPage = () => {
         <button
           className={classes.button}
           onClick={() => {
-            navigate(-1);
+            navigate("/");
           }}
         >
-          Go back
+          Go to homepage
         </button>
       </div>
     </>

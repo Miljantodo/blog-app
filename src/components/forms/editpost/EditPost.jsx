@@ -1,26 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { updatePost } from "../../../utils/Api";
 import OverlayModal from "../../modal/OverlayModal";
 import classes from "./EditPost.module.css";
 
-const EditPost = ({ post, setPost }) => {
+const EditPost = ({ post, onSubmit }) => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
       title: post.title,
       body: post.body,
     },
   });
-
-  const onSubmit = (data) => {
-    updatePost(data, post.id)
-      .then((result) => {
-        setPost(result);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
 
   const renderForm = () => {
     return (

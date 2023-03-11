@@ -3,7 +3,6 @@ import Modal from "react-modal";
 import classes from "./OverlayModal.module.css";
 
 const OverlayModal = ({ buttonText, children, ...props }) => {
-  Modal.setAppElement("#root");
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
@@ -12,6 +11,8 @@ const OverlayModal = ({ buttonText, children, ...props }) => {
   function closeModal() {
     setIsOpen(false);
   }
+
+  Modal.setAppElement("#root");
 
   return (
     <div className="center">

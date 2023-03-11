@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
-import classes from "./PostInformation.module.css";
+import classes from "./SinglePost.module.css";
 import Comments from "../../../components/comments/Comments";
-import { fetchPostInfo, fetchUserInfo } from "../../../utils/Api";
+import { fetchPostInfo, fetchUserInfo, updatePost } from "../../../utils/Api";
 import EditPost from "../../../components/forms/editpost/EditPost";
 import Card from "../../../components/card/Card";
 
-const PostInformation = () => {
+const SinglePost = () => {
   const { postID } = useParams();
   const [username, setUsername] = useState("Unknown User");
   const [email, setEmail] = useState("Unknown Email");
   const [post, setPost] = useState([]);
-  const [valid, setValid] = useState(false);
+  const [dataFetched, setDataFetched] = useState(false);
 
   useEffect(() => {
     fetchPostInfo(postID).then((data) => {
@@ -21,17 +21,27 @@ const PostInformation = () => {
         .then((result) => {
           setUsername(result.name);
           setEmail(result.email);
-          setValid(true);
+          setDataFetched(true);
         })
         .catch((error) => {
-          setValid(true);
+          setDataFetched(true);
         });
     });
   }, []);
 
+  const onSubmit = (data) => {
+    updatePost(data, post.id)
+      .then((result) => {
+        setPost(result);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   return (
     <>
-      {valid ? (
+      {dataFetched ? (
         <div>
           <Card
             className={classes.container}
@@ -43,24 +53,15 @@ const PostInformation = () => {
           />
           <br></br>
           <div className={classes.buttons}>
-            <EditPost post={post} setPost={setPost} />
+            <EditPost post={post} setPost={setPost} onSubmit={onSubmit} />
             <Comments postID={post.id} />
           </div>
         </div>
       ) : (
-        <ThreeDots
-          height="180"
-          width="180"
-          radius="9"
-          color="#4fa94d"
-          ariaLabel="three-dots-loading"
-          wrapperStyle={{}}
-          wrapperClassName=""
-          visible={true}
-        />
+        <ThreeDots className="loader" />
       )}
     </>
   );
 };
 
-export default PostInformation;
+export default SinglePost;

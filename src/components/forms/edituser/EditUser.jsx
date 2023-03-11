@@ -1,10 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { updateUser } from "../../../utils/Api";
 import OverlayModal from "../../modal/OverlayModal";
 import classes from "./EditUser.module.css";
 
-const EditUser = ({ user, setUser }) => {
+const EditUser = ({ user, setUser, onSubmit }) => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
       name: user.name,
@@ -13,16 +12,6 @@ const EditUser = ({ user, setUser }) => {
       status: user.status,
     },
   });
-
-  const onSubmit = (data) => {
-    updateUser(data, user.id)
-      .then((result) => {
-        setUser(result);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
 
   const renderForm = () => {
     return (
