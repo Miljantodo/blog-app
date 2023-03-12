@@ -16,8 +16,8 @@ const Posts = () => {
 
   function pageChange(pageValue) {
     setPage(pageValue);
-    setResponded(false);
     setPosts([]);
+    setResponded(false);
   }
 
   useEffect(() => {
@@ -25,11 +25,9 @@ const Posts = () => {
       const postsWithUsers = await Promise.all(
         result.data.map(async (post) => {
           const username = await findAuthorName(post.user_id);
-
           return { ...post, username };
         })
       );
-
       setPosts(postsWithUsers);
       setTotalPages(result.meta.pagination.total);
       setResponded(true);
@@ -39,30 +37,28 @@ const Posts = () => {
   const onSubmit = (data) => {
     createPost(data)
       .then(() => {
-        navigate("/users/702677");
+        navigate("/users/997879");
       })
       .catch((err) => {
         console.log(err.message);
       });
   };
 
-  const findAuthorName = (userID) => {
-    return fetchUserInfo(userID)
+  const findAuthorName = async (userID) => {
+    return await fetchUserInfo(userID)
       .then((result) => {
         return result.name;
       })
-      .catch((error) => {
+      .catch(() => {
         console.log("API is missing users referenced above.");
         return "Unknown User";
       });
   };
 
   const renderPosts = () => {
-    if (posts.length) {
-      return posts.map((post) => (
-        <Card key={post.id} id={post.id} p1={post.title} p2={post.username} />
-      ));
-    }
+    return posts.map((post) => (
+      <Card key={post.id} id={post.id} p1={post.title} p2={post.username} />
+    ));
   };
 
   return (

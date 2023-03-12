@@ -13,6 +13,8 @@ const Users = () => {
 
   function pageChange(pageValue) {
     setPage(pageValue);
+    setUsers([]);
+    setResponded(false);
   }
 
   useEffect(() => {
