@@ -25,7 +25,7 @@ export const fetchUserPosts = async (userID) => {
 };
 
 export const fetchPosts = async (page) => {
-  const res = await axios_api.get(`v1/posts?page=${page}&per_page=20`);
+  const res = await axios_api.get(`v1/posts?page=${page}&per_page=2`);
   return res.data;
 };
 
@@ -41,10 +41,10 @@ export const fetchComments = async (postID) => {
 
 export const createPost = async (data) => {
   const res = await axios_api.post(`v2/users/997879/posts`, {
-    title: data.Title,
-    body: data.Body,
+    title: data.title,
+    body: data.body,
   });
-  return res.json();
+  return res.data;
 };
 
 export const postComment = async (body, postID) => {

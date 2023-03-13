@@ -26,8 +26,8 @@ const Comments = ({ postID }) => {
       });
   };
 
-  const renderComments = () => {
-    return (
+  return (
+    <OverlayModal buttonText={"Show Comments"} className={classes.modal}>
       <div className={classes.body}>
         {comments.length ? (
           comments.map((comment) => (
@@ -45,12 +45,6 @@ const Comments = ({ postID }) => {
           setOpen={setOpen}
         />
       </div>
-    );
-  };
-
-  return (
-    <OverlayModal buttonText={"Show Comments"} className={classes.modal}>
-      {renderComments()}
     </OverlayModal>
   );
 };

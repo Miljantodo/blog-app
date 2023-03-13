@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/card/Card";
-import NewPost from "../../components/forms/newpost/NewPost";
+import PostForm from "../../components/forms/post-form/PostForm";
 import Pagination from "../../components/pagination/Pagination";
 import { createPost, fetchPosts, fetchUserInfo } from "../../utils/Api";
 import classes from "./Posts.module.css";
@@ -11,13 +11,13 @@ const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [responded, setResponded] = useState(false);
+  const [dataFetched, setDataFetched] = useState(false);
   const navigate = useNavigate();
 
   function pageChange(pageValue) {
     setPage(pageValue);
     setPosts([]);
-    setResponded(false);
+    setDataFetched(false);
   }
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const Posts = () => {
         );
         setPosts(postsWithUsers);
         setTotalPages(result.meta.pagination.total);
-        setResponded(true);
+        setDataFetched(true);
       })
       .catch((err) => {
         console.log(err.message);
@@ -67,7 +67,7 @@ const Posts = () => {
 
   return (
     <>
-      {responded ? (
+      {dataFetched ? (
         posts.length > 0 ? (
           <div>
             <Pagination
@@ -76,7 +76,7 @@ const Posts = () => {
               onClick={pageChange}
             />
             <div className={classes.create}>
-              <NewPost onSubmit={onSubmit} />
+              <PostForm onSubmit={onSubmit} buttonText="Create Post" />
             </div>
             <div className={classes.container}>{renderPosts()}</div>
             <Pagination

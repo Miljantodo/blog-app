@@ -1,18 +1,18 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import OverlayModal from "../../modal/OverlayModal";
-import classes from "./EditPost.module.css";
+import classes from "./PostForm.module.css";
 
-const EditPost = ({ post, onSubmit }) => {
+const PostForm = ({ post, onSubmit, buttonText }) => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      title: post.title,
-      body: post.body,
+      title: post?.title || "",
+      body: post?.body || "",
     },
   });
 
-  const renderForm = () => {
-    return (
+  return (
+    <OverlayModal buttonText={buttonText} className={classes.modal}>
       <form onSubmit={handleSubmit(onSubmit)} className={classes.container}>
         <textarea
           className={classes.title}
@@ -26,15 +26,10 @@ const EditPost = ({ post, onSubmit }) => {
           placeholder="Text Body"
           {...register("body", { required: true })}
         />
-        <button type="submit">Edit post</button>
+        <button type="submit">Save</button>
       </form>
-    );
-  };
-  return (
-    <OverlayModal buttonText={"Edit Post"} className={classes.modal}>
-      {renderForm()}
     </OverlayModal>
   );
 };
 
-export default EditPost;
+export default PostForm;

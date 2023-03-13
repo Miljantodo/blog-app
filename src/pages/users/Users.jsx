@@ -9,12 +9,12 @@ const Users = () => {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [responded, setResponded] = useState(false);
+  const [dataFetched, setDataFetched] = useState(false);
 
   function pageChange(pageValue) {
     setPage(pageValue);
     setUsers([]);
-    setResponded(false);
+    setDataFetched(false);
   }
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Users = () => {
       .then((result) => {
         setUsers(result.data);
         setTotalPages(result.meta.pagination.total);
-        setResponded(true);
+        setDataFetched(true);
       })
       .catch((err) => {
         console.log(err.message);
@@ -37,7 +37,7 @@ const Users = () => {
 
   return (
     <>
-      {responded ? (
+      {dataFetched ? (
         users.length > 0 ? (
           <div>
             <Pagination

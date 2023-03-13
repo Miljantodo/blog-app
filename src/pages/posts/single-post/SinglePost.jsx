@@ -4,8 +4,8 @@ import { ThreeDots } from "react-loader-spinner";
 import classes from "./SinglePost.module.css";
 import Comments from "../../../components/comments/Comments";
 import { fetchPostInfo, fetchUserInfo, updatePost } from "../../../utils/Api";
-import EditPost from "../../../components/forms/editpost/EditPost";
 import Card from "../../../components/card/Card";
+import PostForm from "../../../components/forms/post-form/PostForm";
 
 const SinglePost = () => {
   const { postID } = useParams();
@@ -23,7 +23,7 @@ const SinglePost = () => {
           setEmail(result.email);
           setDataFetched(true);
         })
-        .catch((error) => {
+        .catch(() => {
           setDataFetched(true);
         });
     });
@@ -53,7 +53,7 @@ const SinglePost = () => {
           />
           <br></br>
           <div className={classes.buttons}>
-            <EditPost post={post} setPost={setPost} onSubmit={onSubmit} />
+            <PostForm post={post} onSubmit={onSubmit} buttonText="Edit Post" />
             <Comments postID={post.id} />
           </div>
         </div>
