@@ -18,11 +18,15 @@ const Users = () => {
   }
 
   useEffect(() => {
-    fetchUsers(page).then((result) => {
-      setUsers(result.data);
-      setTotalPages(result.meta.pagination.total);
-      setResponded(true);
-    });
+    fetchUsers(page)
+      .then((result) => {
+        setUsers(result.data);
+        setTotalPages(result.meta.pagination.total);
+        setResponded(true);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }, [page]);
 
   const renderUsers = () => {

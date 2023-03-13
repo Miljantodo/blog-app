@@ -21,17 +21,21 @@ const Posts = () => {
   }
 
   useEffect(() => {
-    fetchPosts(page).then(async (result) => {
-      const postsWithUsers = await Promise.all(
-        result.data.map(async (post) => {
-          const username = await findAuthorName(post.user_id);
-          return { ...post, username };
-        })
-      );
-      setPosts(postsWithUsers);
-      setTotalPages(result.meta.pagination.total);
-      setResponded(true);
-    });
+    fetchPosts(page)
+      .then(async (result) => {
+        const postsWithUsers = await Promise.all(
+          result.data.map(async (post) => {
+            const username = await findAuthorName(post.user_id);
+            return { ...post, username };
+          })
+        );
+        setPosts(postsWithUsers);
+        setTotalPages(result.meta.pagination.total);
+        setResponded(true);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }, [page]);
 
   const onSubmit = (data) => {
