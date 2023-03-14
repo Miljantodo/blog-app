@@ -1,7 +1,4 @@
-import Axios from "axios";
-import { setupCache } from "axios-cache-interceptor";
-
-const axios = setupCache(Axios);
+import axios from "axios";
 
 const axios_api = axios.create({
   baseURL: "https://gorest.co.in/public/",
