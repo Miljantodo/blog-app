@@ -1,4 +1,7 @@
-import axios from "axios";
+import Axios from "axios";
+import { setupCache } from "axios-cache-interceptor";
+
+const axios = setupCache(Axios);
 
 const axios_api = axios.create({
   baseURL: "https://gorest.co.in/public/",
@@ -25,7 +28,7 @@ export const fetchUserPosts = async (userID) => {
 };
 
 export const fetchPosts = async (page) => {
-  const res = await axios_api.get(`v1/posts?page=${page}&per_page=2`);
+  const res = await axios_api.get(`v1/posts?page=${page}&per_page=20`);
   return res.data;
 };
 

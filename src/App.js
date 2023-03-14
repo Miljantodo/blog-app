@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Posts from "./pages/posts/Posts";
 import Users from "./pages/users/Users";
 import Root from "./pages/Root";
-import ErrorPage from "./pages/notfound/ErrorPage";
+import ErrorPage from "./pages/not-found/ErrorPage";
 import SingleUser from "./pages/users/single-user/SingleUser";
 import SinglePost from "./pages/posts/single-post/SinglePost";
 

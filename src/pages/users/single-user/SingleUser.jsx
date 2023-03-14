@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { useParams } from "react-router-dom";
 import Card from "../../../components/card/Card";
-import EditUser from "../../../components/forms/edituser/EditUser";
+import EditUser from "../../../components/forms/edit-user/EditUser";
 import { fetchUserInfo, fetchUserPosts, updateUser } from "../../../utils/Api";
 import classes from "./SingleUser.module.css";
 import UserPosts from "./user-posts/UserPosts";

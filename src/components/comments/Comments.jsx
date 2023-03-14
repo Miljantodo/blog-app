@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchComments, postComment } from "../../utils/Api";
-import NewComment from "../forms/newcomment/NewComment";
+import NewComment from "../forms/new-comment/NewComment";
 import OverlayModal from "../modal/OverlayModal";
 import classes from "./Comments.module.css";
 import Card from "../../components/card/Card";
