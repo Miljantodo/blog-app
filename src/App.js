@@ -6,6 +6,7 @@ import Root from "./pages/Root";
 import ErrorPage from "./pages/not-found/ErrorPage";
 import SingleUser from "./pages/users/single-user/SingleUser";
 import SinglePost from "./pages/posts/single-post/SinglePost";
+import Welcome from "./pages/welcome/Welcome";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -13,7 +14,7 @@ const App = () => {
       path: "/",
       element: <Root />,
       children: [
-        { path: "/", element: <Users /> },
+        { path: "/", element: <Welcome /> },
         { path: "/users", element: <Users /> },
         { path: "/posts", element: <Posts /> },
         { path: "/users/:userID", element: <SingleUser /> },

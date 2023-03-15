@@ -40,7 +40,7 @@ export const fetchComments = async (postID) => {
 };
 
 export const createPost = async (data) => {
-  const res = await axios_api.post(`v2/users/997879/posts`, {
+  const res = await axios_api.post(`v2/users/10226/posts`, {
     title: data.title,
     body: data.body,
   });
@@ -49,8 +49,8 @@ export const createPost = async (data) => {
 
 export const postComment = async (body, postID) => {
   const res = await axios_api.post(`v2/posts/${postID}/comments`, {
-    name: "Petar Vucic",
-    email: "vucko.petar@gmail.com",
+    name: "Marko Petrovic",
+    email: "marko.petrovic@gmail.com",
     body: body.comment,
   });
   return res.data;

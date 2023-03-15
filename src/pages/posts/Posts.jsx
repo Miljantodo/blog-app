@@ -41,7 +41,7 @@ const Posts = () => {
   const onSubmit = (data) => {
     createPost(data)
       .then(() => {
-        navigate("/users/997879");
+        navigate("/users/10226");
       })
       .catch((err) => {
         console.log(err.message);
