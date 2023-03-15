@@ -1,10 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { updateUser } from "../../../utils/Api";
 import OverlayModal from "../../modal/OverlayModal";
 import classes from "./EditUser.module.css";
 
-const EditUser = ({ user, setUser }) => {
+const EditUser = ({ user, onSubmit }) => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
       name: user.name,
@@ -14,18 +13,8 @@ const EditUser = ({ user, setUser }) => {
     },
   });
 
-  const onSubmit = (data) => {
-    updateUser(data, user.id)
-      .then((result) => {
-        setUser(result);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
-
-  const renderForm = () => {
-    return (
+  return (
+    <OverlayModal buttonText={"Edit User"} className={classes.modal}>
       <form onSubmit={handleSubmit(onSubmit)} className={classes.container}>
         <input
           type="text"
@@ -47,11 +36,6 @@ const EditUser = ({ user, setUser }) => {
         </select>
         <input type="submit" value="Edit" />
       </form>
-    );
-  };
-  return (
-    <OverlayModal buttonText={"Edit User"} className={classes.modal}>
-      {renderForm()}
     </OverlayModal>
   );
 };

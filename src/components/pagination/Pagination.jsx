@@ -6,7 +6,7 @@ const Pagination = ({ page, totalPages, onClick }) => {
     onClick(page + i);
   }
   return (
-    <div className={classes.container}>
+    <div className={totalPages ? classes.container : classes.hidden}>
       <button
         className={page < 2 ? classes.hide : classes.visible}
         onClick={() => {

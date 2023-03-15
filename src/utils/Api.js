@@ -1,91 +1,75 @@
-const API_TOKEN =
-  "?access-token=04159bae6146ff65c3e788a48f50985a1dcaa8bac77de4988132ad5ca8a2bc30";
+import axios from "axios";
 
-const FETCH_USERS_API = "https://gorest.co.in/public/v1/users?page=";
-const FECTH_POSTS_API = "https://gorest.co.in/public/v1/posts?page=";
-
-const FETCH_USER_API = "https://gorest.co.in/public/v2/users/";
-const FETCH_POST_API = "https://gorest.co.in/public/v2/posts/";
-
-const CREATE_POST_API = "https://gorest.co.in/public/v2/users/702677/posts";
+const axios_api = axios.create({
+  baseURL: "https://gorest.co.in/public/",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization:
+      "Bearer 9c87990f1e6a61374d9c28eedf5c168d5c021b7d761ce8466a5d9e4c4a079e6a",
+  },
+});
 
 export const fetchUsers = async (page) => {
-  const res = await fetch(FETCH_USERS_API + page + "&per_page=30" + API_TOKEN);
-  return res.json();
+  const res = await axios_api.get(`v1/users?page=${page}&per_page=30`);
+  return res.data;
 };
 
 export const fetchUserInfo = async (userID) => {
-  const res = await fetch(FETCH_USER_API + userID + API_TOKEN);
-  if (res.ok) {
-    return res.json();
-  }
-  throw new Error("User doesn't exist.");
+  const res = await axios_api.get(`v2/users/${userID}`);
+  return res.data;
 };
 
 export const fetchUserPosts = async (userID) => {
-  const res = await fetch(FETCH_USER_API + userID + "/posts" + API_TOKEN);
-  return res.json();
+  const res = await axios_api.get(`v2/users/${userID}/posts`);
+  return res.data;
 };
 
 export const fetchPosts = async (page) => {
-  const res = await fetch(FECTH_POSTS_API + page + "&per_page=20" + API_TOKEN);
-  return res.json();
+  const res = await axios_api.get(`v1/posts?page=${page}&per_page=20`);
+  return res.data;
 };
 
 export const fetchPostInfo = async (postID) => {
-  const res = await fetch(FETCH_POST_API + postID + API_TOKEN);
-  return res.json();
+  const res = await axios_api.get(`v2/posts/${postID}`);
+  return res.data;
 };
 
 export const fetchComments = async (postID) => {
-  const res = await fetch(FETCH_POST_API + postID + "/comments" + API_TOKEN);
-  return res.json();
+  const res = await axios_api.get(`v2/posts/${postID}/comments`);
+  return res.data;
 };
 
 export const createPost = async (data) => {
-  const res = await fetch(CREATE_POST_API + API_TOKEN, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title: data.Title, body: data.Body }),
+  const res = await axios_api.post(`v2/users/10226/posts`, {
+    title: data.title,
+    body: data.body,
   });
-  return res.json();
+  return res.data;
 };
 
 export const postComment = async (body, postID) => {
-  const res = await fetch(FETCH_POST_API + postID + "/comments" + API_TOKEN, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name: "Petar Vucic",
-      email: "vucko.petar@gmail.com",
-      body: body.comment,
-    }),
+  const res = await axios_api.post(`v2/posts/${postID}/comments`, {
+    name: "Marko Petrovic",
+    email: "marko.petrovic@gmail.com",
+    body: body.comment,
   });
-  return res.json();
+  return res.data;
 };
 
 export const updateUser = async (data, userID) => {
-  const res = await fetch(FETCH_USER_API + userID + API_TOKEN, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name: data.name,
-      email: data.email,
-      gender: data.gender,
-      status: data.status,
-    }),
+  const res = await axios_api.put(`v2/users/${userID}`, {
+    name: data.name,
+    email: data.email,
+    gender: data.gender,
+    status: data.status,
   });
-  return res.json();
+  return res.data;
 };
 
 export const updatePost = async (data, postID) => {
-  const res = await fetch(FETCH_POST_API + postID + API_TOKEN, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      title: data.title,
-      body: data.body,
-    }),
+  const res = await axios_api.put(`v2/posts/${postID}`, {
+    title: data.title,
+    body: data.body,
   });
-  return res.json();
+  return res.data;
 };

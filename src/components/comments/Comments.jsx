@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { fetchComments } from "../../utils/Api";
-import NewComment from "../forms/newcomment/NewComment";
+import { fetchComments, postComment } from "../../utils/Api";
+import NewComment from "../forms/new-comment/NewComment";
 import OverlayModal from "../modal/OverlayModal";
 import classes from "./Comments.module.css";
 import Card from "../../components/card/Card";
 
 const Comments = ({ postID }) => {
   const [comments, setComments] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     fetchComments(postID).then((data) => {
@@ -14,9 +15,20 @@ const Comments = ({ postID }) => {
     });
   }, []);
 
-  const renderComments = () => {
-    return (
-      <>
+  const onSubmit = (data) => {
+    postComment(data, postID)
+      .then((result) => {
+        setOpen(false);
+        setComments([...comments, result]);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  return (
+    <OverlayModal buttonText={"Show Comments"} className={classes.modal}>
+      <div className={classes.body}>
         {comments.length ? (
           comments.map((comment) => (
             <Card key={comment.id} p1={comment.name} p2={comment.body} />
@@ -28,14 +40,11 @@ const Comments = ({ postID }) => {
           postID={postID}
           comments={comments}
           setComments={setComments}
+          onSubmit={onSubmit}
+          open={open}
+          setOpen={setOpen}
         />
-      </>
-    );
-  };
-
-  return (
-    <OverlayModal buttonText={"Show Comments"} className={classes.modal}>
-      {renderComments()}
+      </div>
     </OverlayModal>
   );
 };

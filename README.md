@@ -13,9 +13,9 @@ API used for this assignment: https://gorest.co.in/
 
 User for testing:
 {
-"id": 702677,
-"name": "Petar Vucic",
-"email": "vucko.petar@gmail.com",
+"id": 10226,
+"name": "Marko Petrovic",
+"email": "marko.petrovic@gmail.com",
 "gender": "male",
 "status": "active"
 }
